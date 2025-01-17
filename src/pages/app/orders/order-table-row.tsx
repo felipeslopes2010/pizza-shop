@@ -31,13 +31,13 @@ export function OrderTableRow() {
             </TableCell>
             <TableCell>
                 <Button variant="outline" size="xs">
-                    <ArrowRight className="h-3 w-3 mr-2" />
+                    <ArrowRight className="h-3 w-3" />
                     Aprovar
                 </Button>
             </TableCell>
             <TableCell>
                 <Button variant="ghost" size="xs">
-                    <X className="h-3 w-3 mr-2" />
+                    <X className="h-3 w-3" />
                     Cancelar
                 </Button>
             </TableCell>
