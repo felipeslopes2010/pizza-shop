@@ -1,4 +1,4 @@
-import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from "recharts";
+import { ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line } from "recharts";
 
 import colors from "tailwindcss/colors";
 
@@ -32,7 +32,11 @@ export function RevenueChart() {
                     <LineChart data={data} style={{ fontSize: 12 }} >
                         <XAxis stroke="#888" dataKey="date" axisLine={false} tickLine={false} dy={16} />
 
-                        <YAxis stroke="#888" axisLine={false} tickLine={false} width={80} tickFormatter={(value: number)  =>
+                        <YAxis stroke="#888"
+                            axisLine={false}
+                            tickLine={false}
+                            width={80}
+                            tickFormatter={(value: number)  =>
                             value.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -40,7 +44,13 @@ export function RevenueChart() {
                         }
                         />
 
-                        <Line type="linear" strokeWidth={2} dataKey="revenue" stroke={colors.violet["500"]} />
+                        <CartesianGrid vertical={false} className="stroke-muted" />
+
+                        <Line type="linear"
+                            strokeWidth={2}
+                            dataKey="revenue"
+                            stroke={colors.violet["500"]}
+                        />
                     </LineChart>
                 </ResponsiveContainer>
             </CardContent>
