@@ -4,4 +4,5 @@ import { env } from "@/env";
 
 export const api = axios.create({
     baseURL: 'http://localhost:3333',
+    withCredentials: true,
 })
