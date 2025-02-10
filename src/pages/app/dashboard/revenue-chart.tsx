@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { DateRange } from "react-day-picker";
 import { useMemo, useState } from "react";
 import { subDays } from "date-fns";
+import { Loader2 } from "lucide-react";
 
 export function RevenueChart() {
     const [dateRange, setDateRange] = useState<DateRange | undefined>({
@@ -47,30 +48,30 @@ export function RevenueChart() {
                 </div>
                 <div className="flex items-center gap-3">
                     <Label>Período</Label>
-                    <DateRangePicker date={dateRange} onDateChange={setDateRange}  />
+                    <DateRangePicker date={dateRange} onDateChange={setDateRange} />
                 </div>
             </CardHeader>
             <CardContent>
                 {
-                    chartData && (
+                    chartData ? (
                         <ResponsiveContainer width="100%" height={240}>
                             <LineChart data={chartData} style={{ fontSize: 12 }} >
                                 <XAxis stroke="#888" dataKey="date" axisLine={false} tickLine={false} dy={16} />
-        
+
                                 <YAxis stroke="#888"
                                     axisLine={false}
                                     tickLine={false}
                                     width={80}
-                                    tickFormatter={(value: number)  =>
-                                    value.toLocaleString("pt-BR", {
-                                        style: "currency",
-                                        currency: "BRL",
-                                    })
-                                }
+                                    tickFormatter={(value: number) =>
+                                        value.toLocaleString("pt-BR", {
+                                            style: "currency",
+                                            currency: "BRL",
+                                        })
+                                    }
                                 />
-        
+
                                 <CartesianGrid vertical={false} className="stroke-muted" />
-        
+
                                 <Line type="linear"
                                     strokeWidth={2}
                                     dataKey="receipt"
@@ -78,6 +79,10 @@ export function RevenueChart() {
                                 />
                             </LineChart>
                         </ResponsiveContainer>
+                    ) : (
+                        <div className="h-[240px] w-full flex justify-center items-center">
+                            <Loader2 className="h-8 w-8 text-muted-foreground animate-spin" />
+                        </div>
                     )
                 }
             </CardContent>
